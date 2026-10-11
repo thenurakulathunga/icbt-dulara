@@ -1,0 +1,57 @@
+' Shared look for every PrintXpress diagram (printer-friendly, orange accent)
+!pragma layout smetana
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam ArrowColor #555555
+skinparam ArrowFontColor #333333
+
+skinparam class {
+  BackgroundColor #FFF4EA
+  BorderColor #E05A00
+  HeaderBackgroundColor #FFD9B3
+  AttributeFontColor #222222
+}
+skinparam entity {
+  BackgroundColor #FFF4EA
+  BorderColor #E05A00
+}
+skinparam usecase {
+  BackgroundColor #FFF4EA
+  BorderColor #E05A00
+}
+skinparam actor {
+  BorderColor #E05A00
+  BackgroundColor #FFD9B3
+}
+skinparam activity {
+  BackgroundColor #FFF4EA
+  BorderColor #E05A00
+  DiamondBackgroundColor #FFE4C7
+  DiamondBorderColor #E05A00
+}
+skinparam package {
+  BorderColor #999999
+  BackgroundColor #FAFAFA
+}
+skinparam component {
+  BackgroundColor #FFF4EA
+  BorderColor #E05A00
+}
+skinparam database {
+  BackgroundColor #FFF4EA
+  BorderColor #E05A00
+}
+skinparam sequence {
+  ParticipantBackgroundColor #FFF4EA
+  ParticipantBorderColor #E05A00
+  LifeLineBorderColor #999999
+  ActorBackgroundColor #FFD9B3
+  ActorBorderColor #E05A00
+}
+skinparam note {
+  BackgroundColor #FFFBE6
+  BorderColor #C8B560
+}

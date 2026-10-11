@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Orange gradient rounded square behind product icons -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:angle="315" android:startColor="#FF9A3D" android:endColor="@color/px_primary_dark" />
+    <corners android:radius="14dp" />
+</shape>

@@ -1,0 +1,47 @@
+@startuml activity-manage-order
+!include style.iuml
+title Activity Diagram - Track, reschedule or cancel an order
+
+|Customer|
+start
+:Open "Orders" tab;
+:Select an order;
+|App|
+:Load order details (SELECT from SQLite);
+:Show status tracker\nPending > Processing > Printing > Ready > Completed;
+if (Status is PENDING or PROCESSING?) then (yes - can change)
+  :Show "Reschedule" and "Cancel" buttons;
+  |Customer|
+  if (Action?) then (reschedule)
+    :Pick new date;
+    |Repository + SQLite|
+    if (Date >= today + turnaround\nand <= 60 days?) then (yes)
+      :Update scheduled_date;
+      :Create notification;
+      |App|
+      :Show new date;
+    else (no)
+      |App|
+      :Show "earliest available date" error;
+    endif
+  else (cancel)
+    |Customer|
+    :Confirm cancellation;
+    |Repository + SQLite|
+    :Check status again\n(staff may have started printing);
+    if (Still changeable?) then (yes)
+      :Set status = CANCELLED;
+      :Create notification;
+      |App|
+      :Show "Order cancelled";
+    else (no)
+      |App|
+      :Show "can no longer be changed";
+    endif
+  endif
+else (no - printing started)
+  |App|
+  :Hide buttons, show info message;
+endif
+stop
+@enduml

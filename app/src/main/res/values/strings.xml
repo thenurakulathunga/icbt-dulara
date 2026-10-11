@@ -1,0 +1,113 @@
+<resources>
+    <string name="app_name">PrintXpress</string>
+    <string name="tagline">Print anything. Delivered island-wide.</string>
+
+    <!-- Common -->
+    <string name="retry">Try again</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="see_all">See all</string>
+    <string name="loading">Please wait…</string>
+
+    <!-- Auth -->
+    <string name="welcome_back">Welcome back</string>
+    <string name="login_subtitle">Log in to manage your print orders</string>
+    <string name="create_account">Create account</string>
+    <string name="register_subtitle">Join PrintXpress and start printing today</string>
+    <string name="email_or_phone">Email or phone number</string>
+    <string name="full_name">Full name</string>
+    <string name="email">Email</string>
+    <string name="phone">Mobile number</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="login">Log in</string>
+    <string name="register">Sign up</string>
+    <string name="no_account">Don\'t have an account? <b>Sign up</b></string>
+    <string name="have_account">Already have an account? <b>Log in</b></string>
+    <string name="password_hint">At least 8 characters with letters and numbers</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_browse">Browse</string>
+    <string name="nav_orders">Orders</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Home -->
+    <string name="search_hint">Search business cards, mugs, banners…</string>
+    <string name="offers">Seasonal offers</string>
+    <string name="categories">Categories</string>
+    <string name="design_help">Design help</string>
+    <string name="gallery">Gallery</string>
+    <string name="guidelines">Print guidelines</string>
+    <string name="faqs">FAQs</string>
+    <string name="support">Support</string>
+
+    <!-- Product / order form -->
+    <string name="size">Size</string>
+    <string name="material">Material / paper type</string>
+    <string name="quantity">Quantity</string>
+    <string name="artwork">Artwork</string>
+    <string name="upload_design">Upload design</string>
+    <string name="enter_text">Enter text</string>
+    <string name="choose_design">Choose a saved design or upload a new one</string>
+    <string name="custom_text">Text to print (name, title, phone…)</string>
+    <string name="fulfilment">Pickup or delivery</string>
+    <string name="pickup">Pickup</string>
+    <string name="delivery">Delivery</string>
+    <string name="pickup_info">Free pickup from our Colombo branch</string>
+    <string name="delivery_address">Delivery address</string>
+    <string name="add_address">Add a new address</string>
+    <string name="date_pickup">Pickup date</string>
+    <string name="date_delivery">Delivery date</string>
+    <string name="promo_code">Promo code (optional)</string>
+    <string name="apply">Apply</string>
+    <string name="notes">Notes for the printer (optional)</string>
+    <string name="place_order">Place order</string>
+    <string name="price_summary">Price summary</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="discount">Discount</string>
+    <string name="delivery_fee">Delivery fee</string>
+    <string name="total">Total</string>
+
+    <!-- Orders -->
+    <string name="my_orders">My orders</string>
+    <string name="order_tracking">Order tracking</string>
+    <string name="reschedule">Reschedule</string>
+    <string name="cancel_order">Cancel order</string>
+    <string name="cancel_order_confirm">Are you sure you want to cancel this order? This cannot be undone.</string>
+    <string name="cannot_change">This order is already being printed, so it can no longer be changed.</string>
+
+    <!-- Profile -->
+    <string name="edit_profile">Edit profile</string>
+    <string name="change_password">Change password</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="my_addresses">My addresses</string>
+    <string name="my_designs">My saved designs</string>
+    <string name="notifications">Notifications</string>
+    <string name="offers_promotions">Offers &amp; promotions</string>
+    <string name="logout">Log out</string>
+    <string name="logout_confirm">Do you want to log out?</string>
+    <string name="address_label">Label (Home, Office…)</string>
+    <string name="address_line">Street address</string>
+    <string name="city">City</string>
+    <string name="postal_code">Postal code</string>
+    <string name="make_default">Use as my default address</string>
+    <string name="design_title">Design title</string>
+
+    <!-- Support -->
+    <string name="contact_us">Contact us</string>
+    <string name="ask_question">Ask our design team</string>
+    <string name="subject">Subject</string>
+    <string name="message">Your question</string>
+    <string name="send">Send</string>
+    <string name="my_requests">My requests</string>
+    <string name="mark_all_read">Mark all as read</string>
+
+    <!-- System notifications -->
+    <string name="channel_orders">Order updates</string>
+    <string name="channel_orders_desc">Order confirmation and progress alerts</string>
+</resources>

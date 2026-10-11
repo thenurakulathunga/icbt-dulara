@@ -1,0 +1,43 @@
+@startuml sequence-place-order
+!include style.iuml
+title Sequence Diagram - Place order
+autonumber
+
+actor Customer
+participant "ProductDetailActivity" as UI
+participant "Validator /\nPriceCalculator" as UTIL
+participant "BaseActivity\n+ Async" as ASYNC
+participant "OrderRepository" as ORDERS
+participant "Catalog / Address /\nDesign / Content\nRepositories" as OTHER
+participant "NotificationRepository" as NOTIF
+database "SQLite\nprintxpress.db" as DB
+
+Customer -> UI : fill form, tap "Place order"
+UI -> UTIL : validate fields, calculate total
+UTIL --> UI : no errors, total
+UI -> Customer : confirm dialog
+Customer -> UI : Place order
+UI -> ASYNC : requestWithLoading(() -> repo.orders.placeOrder(userId, order))
+activate ASYNC
+ASYNC -> ORDERS : placeOrder(userId, order)\n[background thread]
+ORDERS -> OTHER : product, size/material, design,\naddress, promo checks
+OTHER -> DB : SELECT ...
+DB --> OTHER : rows
+ORDERS -> UTIL : PriceCalculator (same rules)
+ORDERS -> DB : BEGIN TRANSACTION
+ORDERS -> DB : INSERT INTO orders
+ORDERS -> DB : INSERT INTO order_items
+ORDERS -> NOTIF : add("Order #x confirmed")
+NOTIF -> DB : INSERT INTO notifications
+ORDERS -> DB : COMMIT
+ORDERS --> ASYNC : OrderDetail
+ASYNC --> UI : onSuccess(detail)\n[UI thread]
+deactivate ASYNC
+UI -> UI : NotificationSync.check()\n(show phone alert)
+UI -> Customer : open Order tracking screen
+
+== A rule is broken ==
+ORDERS --> ASYNC : throw AppException("The earliest available date is ...")
+ASYNC --> UI : onError(message)
+UI -> Customer : snackbar with message
+@enduml

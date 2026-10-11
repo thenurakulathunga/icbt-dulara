@@ -1,0 +1,73 @@
+@startuml activity-place-order
+!include style.iuml
+title Activity Diagram - Place a print order
+
+|Customer|
+start
+:Open product (from Home or Browse);
+|App|
+:Load product, sizes and materials\n(SELECT product + options);
+|Customer|
+:Choose size and material;
+:Set quantity;
+|App|
+:Recalculate live price;
+|Customer|
+if (Artwork?) then (upload design)
+  :Choose saved design\nor pick a file (PDF/PNG/JPG);
+  |App|
+  if (File type allowed\nand size <= 10 MB?) then (yes)
+    :Copy file into app storage\n+ INSERT INTO designs;
+  else (no)
+    :Show error;
+    stop
+  endif
+else (enter text)
+  |Customer|
+  :Type text to print (2-200 chars);
+endif
+|Customer|
+if (Pickup or delivery?) then (delivery)
+  :Select delivery address;
+  |App|
+  :Add LKR 350 delivery fee;
+else (pickup)
+endif
+|Customer|
+:Pick date\n(today + turnaround days ... +60 days);
+if (Has promo code?) then (yes)
+  |App|
+  :Validate code\n(SELECT FROM promotions);
+  if (Valid and quantity >= minimum?) then (yes)
+    :Apply discount;
+  else (no)
+    :Show error under field;
+  endif
+else (no)
+endif
+|Customer|
+:Tap "Place order";
+|App|
+:Validate all fields;
+if (All valid?) then (no)
+  :Show errors;
+  stop
+else (yes)
+endif
+|Customer|
+:Confirm order dialog;
+|Repository + SQLite|
+:OrderRepository re-checks every rule\nand recalculates the price;
+if (Valid?) then (yes)
+  :INSERT order + order item\n(one transaction);
+  :Create "Order confirmed" notification;
+  |App|
+  :Show phone notification;
+  :Open order tracking screen;
+  stop
+else (no)
+  |App|
+  :Show error message;
+  stop
+endif
+@enduml

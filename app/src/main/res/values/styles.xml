@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Reusable styles. Use them with style="@style/..." -->
+<resources>
+
+    <!-- ===== Buttons ===== -->
+    <style name="Widget.PrintXpress.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">54dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="backgroundTint">@color/selector_button_bg</item>
+        <item name="android:textColor">@color/selector_button_text</item>
+    </style>
+
+    <style name="Widget.PrintXpress.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">54dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="strokeColor">@color/px_primary</item>
+        <item name="android:textColor">@color/px_primary</item>
+    </style>
+
+    <style name="Widget.PrintXpress.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/px_primary</item>
+    </style>
+
+    <style name="Widget.PrintXpress.Button.Danger" parent="Widget.PrintXpress.Button.Outlined">
+        <item name="strokeColor">@color/px_error</item>
+        <item name="android:textColor">@color/px_error</item>
+    </style>
+
+    <!-- White-on-orange buttons inside the support banner -->
+    <style name="Widget.PrintXpress.ContactButton" parent="Widget.Material3.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="backgroundTint">#33000000</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="iconTint">@color/white</item>
+        <item name="iconSize">18dp</item>
+    </style>
+
+    <!-- One half of a two-option switch (Pickup | Delivery) -->
+    <style name="Widget.PrintXpress.Toggle" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/selector_toggle_bg</item>
+        <item name="android:textColor">@color/selector_toggle_text</item>
+        <item name="iconTint">@color/selector_toggle_text</item>
+        <item name="iconGravity">textStart</item>
+        <item name="strokeColor">@color/px_outline</item>
+    </style>
+
+    <!-- ===== Text fields ===== -->
+    <style name="Widget.PrintXpress.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxBackgroundColor">@color/px_card</item>
+        <item name="boxStrokeColor">@color/px_primary</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/px_primary</item>
+        <item name="startIconTint">@color/px_text_secondary</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <style name="Widget.PrintXpress.TextInput.Dropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxBackgroundColor">@color/px_card</item>
+        <item name="boxStrokeColor">@color/px_primary</item>
+        <item name="hintTextColor">@color/px_primary</item>
+        <item name="startIconTint">@color/px_text_secondary</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <!-- ===== Cards ===== -->
+    <style name="Widget.PrintXpress.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/px_card</item>
+        <item name="cardCornerRadius">18dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/px_outline</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- ===== Chips (sizes, materials, filters) ===== -->
+    <style name="Widget.PrintXpress.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/selector_chip_bg</item>
+        <item name="android:textColor">@color/selector_chip_text</item>
+        <item name="chipStrokeColor">@color/selector_chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">12dp</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipMinHeight">40dp</item>
+    </style>
+
+    <!-- ===== Bottom navigation: soft orange pill behind the selected tab ===== -->
+    <style name="PrintXpress.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/px_primary_container</item>
+    </style>
+
+    <!-- ===== Toolbar ===== -->
+    <style name="Widget.PrintXpress.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/px_background</item>
+        <item name="titleTextAppearance">@style/TextAppearance.PrintXpress.Title</item>
+        <item name="navigationIconTint">@color/px_text_primary</item>
+    </style>
+
+    <!-- ===== Product thumbnail: orange rounded square with a white icon ===== -->
+    <style name="Widget.PrintXpress.Thumb" parent="">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:background">@drawable/bg_thumb</item>
+        <item name="android:padding">13dp</item>
+        <item name="tint">@color/white</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!-- ===== Text ===== -->
+    <style name="TextAppearance.PrintXpress.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/px_text_primary</item>
+    </style>
+
+    <style name="TextAppearance.PrintXpress.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/px_text_primary</item>
+    </style>
+
+    <style name="TextAppearance.PrintXpress.Subtitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/px_text_primary</item>
+    </style>
+
+    <style name="TextAppearance.PrintXpress.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/px_text_secondary</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="TextAppearance.PrintXpress.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/px_text_hint</item>
+    </style>
+
+    <!-- Small orange heading above a group of fields -->
+    <style name="TextAppearance.PrintXpress.Section" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/px_primary</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.PrintXpress.Price" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/px_primary</item>
+    </style>
+
+    <!-- Section label view (use on a TextView) -->
+    <style name="PrintXpress.SectionLabel" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.PrintXpress.Section</item>
+    </style>
+
+    <!-- "See all" link next to a section label -->
+    <style name="PrintXpress.SeeAll" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:text">@string/see_all</item>
+        <item name="android:textColor">@color/px_primary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Small coloured status pill (Pending, Printing ...) -->
+    <style name="PrintXpress.StatusPill" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_pill</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/px_on_primary</item>
+    </style>
+</resources>

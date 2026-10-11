@@ -1,0 +1,46 @@
+@startuml activity-auth
+!include style.iuml
+title Activity Diagram - Register / Log in
+
+start
+:Open app (Splash);
+if (User id saved on phone?) then (yes)
+  :Load user from SQLite;
+  if (User still exists?) then (yes)
+    :Open Home;
+    stop
+  else (no)
+    :Clear session;
+  endif
+else (no)
+endif
+:Show Login screen;
+if (Has account?) then (no)
+  :Open Register;
+  :Enter name, email, phone,\npassword, confirm password;
+  :Accept privacy policy;
+  if (App validation OK?) then (no)
+    :Show error under each wrong field;
+    stop
+  else (yes)
+  endif
+  :UserRepository.register() checks again;
+  if (Email / phone already used?) then (yes)
+    :Show "already registered";
+    stop
+  else (no)
+    :Hash password (PBKDF2 + salt), INSERT user,\ncreate welcome notification;
+  endif
+else (yes)
+  :Enter email OR phone + password;
+  :UserRepository.login();
+  if (Password matches hash?) then (no)
+    :Show "Incorrect email/phone or password";
+    stop
+  else (yes)
+  endif
+endif
+:Save user id (SharedPreferences);
+:Open Home;
+stop
+@enduml

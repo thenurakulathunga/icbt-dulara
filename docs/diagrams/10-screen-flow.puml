@@ -1,0 +1,57 @@
+@startuml screen-flow
+!include style.iuml
+title Screen Navigation Map
+left to right direction
+
+state Splash
+state Login
+state Register
+state "Main (bottom navigation)" as Main {
+  state Home
+  state Browse
+  state Orders
+  state Profile
+}
+state "Product details\n+ order form" as Product
+state "Order tracking" as OrderDetail
+state "My designs\n(pick / upload)" as Designs
+state "My addresses" as Addresses
+state "Address form" as AddressForm
+state "Edit profile" as EditProfile
+state Notifications
+state "Offers" as Offers
+state Gallery
+state "Guidelines / FAQs" as Info
+state Support
+
+[*] --> Splash
+Splash --> Login : no / expired token
+Splash --> Main : valid token
+Login --> Register
+Register --> Main
+Login --> Main
+
+Home --> Browse : category / search
+Home --> Offers
+Home --> Notifications : bell
+Home --> Gallery
+Home --> Info
+Home --> Support
+Home --> OrderDetail : latest order
+Browse --> Product
+Product --> Designs : choose artwork
+Product --> Addresses : add address
+Product --> OrderDetail : order placed
+Orders --> OrderDetail
+Profile --> EditProfile
+Profile --> Addresses
+Addresses --> AddressForm
+Profile --> Designs
+Profile --> Notifications
+Profile --> Offers
+Profile --> Gallery
+Profile --> Info
+Profile --> Support
+Gallery --> Browse : browse category
+Profile --> Login : log out
+@enduml

@@ -1,0 +1,31 @@
+@startuml architecture
+!include style.iuml
+title PrintXpress - System Architecture (layered, offline, SQLite on the phone)
+
+package "Android phone" {
+  package "PrintXpress app  (Java, XML layouts, Material 3)" {
+    component "UI layer\nActivities, Fragments,\nreusable views" as UI
+    component "Async\n(background thread)" as ASYNC
+    component "Repositories\nbusiness rules + SQL\n(Users, Orders, Catalog ...)" as REPO
+    component "AppDatabase\n(SQLiteOpenHelper)" as HELPER
+    component "Utilities\nValidator, PriceCalculator,\nPasswordHasher" as UTIL
+    component "SessionManager\n(SharedPreferences)" as SESSION
+
+    UI --> ASYNC : request(task)
+    ASYNC --> REPO
+    REPO --> HELPER
+    UI --> UTIL
+    REPO --> UTIL
+    UI --> SESSION
+  }
+  database "printxpress.db\n(SQLite - 14 tables)" as DB
+  folder "files/designs/\n(uploaded artwork)" as FILES
+  file "assets/database/\nschema.sql + seed.sql" as SQL
+  component "Android notification\nsystem" as NOTIF
+}
+
+HELPER --> DB : SQL
+HELPER ..> SQL : runs on first start
+REPO --> FILES : copy / delete
+UI --> NOTIF : order & offer alerts
+@enduml

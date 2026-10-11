@@ -1,0 +1,170 @@
+@startuml erd
+!include style.iuml
+title Entity Relationship Diagram - printxpress.db (SQLite, 3NF)
+hide circle
+skinparam linetype ortho
+
+entity users {
+  * user_id : INTEGER <<PK>>
+  --
+  * full_name : TEXT
+  * email : TEXT <<UQ>>
+  * phone : TEXT <<UQ>>
+  * password_hash : TEXT
+  * created_at : TEXT
+}
+
+entity addresses {
+  * address_id : INTEGER <<PK>>
+  --
+  * user_id : INTEGER <<FK>>
+  * label : TEXT
+  * address_line : TEXT
+  * city : TEXT
+  * postal_code : TEXT
+  * is_default : INTEGER (0/1)
+}
+
+entity categories {
+  * category_id : INTEGER <<PK>>
+  --
+  * name : TEXT <<UQ>>
+  * description : TEXT
+  * icon_name : TEXT
+}
+
+entity products {
+  * product_id : INTEGER <<PK>>
+  --
+  * category_id : INTEGER <<FK>>
+  * name : TEXT
+  * description : TEXT
+  * base_price : REAL
+  * min_quantity : INTEGER
+  * max_quantity : INTEGER
+  * turnaround_days : INTEGER
+  * is_active : INTEGER (0/1)
+}
+
+entity product_options {
+  * option_id : INTEGER <<PK>>
+  --
+  * product_id : INTEGER <<FK>>
+  * option_type : TEXT CHECK (SIZE, MATERIAL)
+  * option_name : TEXT
+  * extra_price : REAL
+}
+
+entity designs {
+  * design_id : INTEGER <<PK>>
+  --
+  * user_id : INTEGER <<FK>>
+  * title : TEXT
+  * original_name : TEXT
+  * file_name : TEXT <<UQ>>
+  * uploaded_at : TEXT
+}
+
+entity promotions {
+  * promotion_id : INTEGER <<PK>>
+  --
+  * title : TEXT
+  * description : TEXT
+  * promo_code : TEXT <<UQ>>
+  * discount_percent : INTEGER
+  * min_quantity : INTEGER
+  * start_date : TEXT
+  * end_date : TEXT
+}
+
+entity orders {
+  * order_id : INTEGER <<PK>>
+  --
+  * user_id : INTEGER <<FK>>
+  address_id : INTEGER <<FK>>
+  promotion_id : INTEGER <<FK>>
+  * fulfilment_type : TEXT CHECK (PICKUP, DELIVERY)
+  * scheduled_date : TEXT
+  * status : TEXT CHECK (...)
+  * subtotal : REAL
+  * discount_amount : REAL
+  * delivery_fee : REAL
+  notes : TEXT
+  * created_at / updated_at : TEXT
+}
+
+entity order_items {
+  * order_item_id : INTEGER <<PK>>
+  --
+  * order_id : INTEGER <<FK>>
+  * product_id : INTEGER <<FK>>
+  * size_option_id : INTEGER <<FK>>
+  material_option_id : INTEGER <<FK>>
+  design_id : INTEGER <<FK>>
+  custom_text : TEXT
+  * quantity : INTEGER
+  * unit_price : REAL
+}
+
+entity notifications {
+  * notification_id : INTEGER <<PK>>
+  --
+  * user_id : INTEGER <<FK>>
+  * title : TEXT
+  * message : TEXT
+  * type : TEXT CHECK (ORDER, PROMOTION, SYSTEM)
+  * is_read : INTEGER (0/1)
+  * created_at : TEXT
+}
+
+entity support_requests {
+  * request_id : INTEGER <<PK>>
+  --
+  * user_id : INTEGER <<FK>>
+  * subject : TEXT
+  * message : TEXT
+  * status : TEXT CHECK (OPEN, ANSWERED, CLOSED)
+  reply : TEXT
+  * created_at : TEXT
+}
+
+entity sample_designs {
+  * sample_id : INTEGER <<PK>>
+  --
+  * category_id : INTEGER <<FK>>
+  * title : TEXT
+  * description : TEXT
+  * style_color : TEXT
+}
+
+entity guidelines {
+  * guideline_id : INTEGER <<PK>>
+  --
+  * title : TEXT
+  * content : TEXT
+  * sort_order : INTEGER
+}
+
+entity faqs {
+  * faq_id : INTEGER <<PK>>
+  --
+  * question : TEXT
+  * answer : TEXT
+  * sort_order : INTEGER
+}
+
+users ||--o{ addresses
+users ||--o{ designs
+users ||--o{ orders
+users ||--o{ notifications
+users ||--o{ support_requests
+categories ||--|{ products
+categories ||--o{ sample_designs
+products ||--|{ product_options
+orders ||--|{ order_items
+addresses |o--o{ orders
+promotions |o--o{ orders
+products ||--o{ order_items
+product_options ||--o{ order_items
+designs |o--o{ order_items
+@enduml

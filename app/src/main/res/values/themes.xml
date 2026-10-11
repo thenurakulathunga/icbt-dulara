@@ -1,0 +1,52 @@
+<resources>
+    <!--
+        App theme: always dark, orange primary + secondary.
+        Default widget styles are set here, so layouts stay short and every
+        button / text field / card looks the same everywhere.
+    -->
+    <style name="Base.Theme.PrintExpress" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/px_primary</item>
+        <item name="colorOnPrimary">@color/px_on_primary</item>
+        <item name="colorPrimaryContainer">@color/px_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/px_on_primary_container</item>
+        <item name="colorSecondary">@color/px_secondary</item>
+        <item name="colorOnSecondary">@color/px_on_primary</item>
+        <item name="colorSecondaryContainer">@color/px_primary_container</item>
+        <item name="colorOnSecondaryContainer">@color/px_on_primary_container</item>
+        <item name="colorTertiary">@color/px_secondary</item>
+
+        <item name="android:colorBackground">@color/px_background</item>
+        <item name="colorOnBackground">@color/px_text_primary</item>
+        <item name="colorSurface">@color/px_surface</item>
+        <item name="colorOnSurface">@color/px_text_primary</item>
+        <item name="colorSurfaceVariant">@color/px_surface_high</item>
+        <item name="colorOnSurfaceVariant">@color/px_text_secondary</item>
+        <item name="colorSurfaceContainer">@color/px_card</item>
+        <item name="colorSurfaceContainerLow">@color/px_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/px_surface_high</item>
+        <item name="colorSurfaceContainerHighest">@color/px_surface_high</item>
+        <item name="colorOutline">@color/px_outline</item>
+        <item name="colorError">@color/px_error</item>
+
+        <item name="android:windowBackground">@color/px_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <!-- Default widget styles -->
+        <item name="materialButtonStyle">@style/Widget.PrintXpress.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.PrintXpress.Button.Outlined</item>
+        <item name="textInputStyle">@style/Widget.PrintXpress.TextInput</item>
+        <item name="materialCardViewStyle">@style/Widget.PrintXpress.Card</item>
+        <item name="chipStyle">@style/Widget.PrintXpress.Chip</item>
+        <item name="toolbarStyle">@style/Widget.PrintXpress.Toolbar</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.PrintXpress.Dialog</item>
+    </style>
+
+    <style name="Theme.PrintExpress" parent="Base.Theme.PrintExpress" />
+
+    <style name="ThemeOverlay.PrintXpress.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/px_card</item>
+        <item name="colorSurfaceContainerHigh">@color/px_card</item>
+        <item name="colorPrimary">@color/px_primary</item>
+    </style>
+</resources>

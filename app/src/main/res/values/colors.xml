@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    PrintXpress colour palette (dark theme, orange brand).
+    Change a colour here and the whole app updates.
+-->
+<resources>
+    <!-- Brand oranges -->
+    <color name="px_primary">#FF7A00</color>            <!-- main orange: buttons, highlights -->
+    <color name="px_primary_dark">#E05A00</color>       <!-- pressed / gradient end -->
+    <color name="px_secondary">#FFA94D</color>          <!-- light orange: secondary accents -->
+    <color name="px_on_primary">#1A0D00</color>         <!-- text on orange -->
+    <color name="px_primary_container">#3D2209</color>  <!-- soft orange background -->
+    <color name="px_on_primary_container">#FFD1A6</color>
+
+    <!-- Dark surfaces (from back to front) -->
+    <color name="px_background">#0F0F12</color>
+    <color name="px_surface">#17171C</color>
+    <color name="px_card">#1F1F26</color>
+    <color name="px_surface_high">#2A2A33</color>
+    <color name="px_outline">#363642</color>
+
+    <!-- Text -->
+    <color name="px_text_primary">#F5F5F7</color>
+    <color name="px_text_secondary">#A8A8B3</color>
+    <color name="px_text_hint">#6E6E7A</color>
+
+    <!-- Feedback -->
+    <color name="px_success">#4CAF50</color>
+    <color name="px_warning">#FFC107</color>
+    <color name="px_error">#FF5252</color>
+    <color name="px_info">#42A5F5</color>
+
+    <!-- Order status colours -->
+    <color name="status_pending">#FFC107</color>
+    <color name="status_processing">#42A5F5</color>
+    <color name="status_printing">#AB47BC</color>
+    <color name="status_ready">#26A69A</color>
+    <color name="status_completed">#66BB6A</color>
+    <color name="status_cancelled">#EF5350</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+</resources>

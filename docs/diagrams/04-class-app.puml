@@ -1,0 +1,178 @@
+@startuml class-app
+!include style.iuml
+title PrintXpress - Class Diagram (Android app structure & reusable components)
+hide empty fields
+hide empty methods
+
+package "ui.base" {
+  abstract class BaseActivity {
+    # repo : Repositories
+    # session : SessionManager
+    # userId() : long
+    # setupToolbar(toolbar, title)
+    # request(task, onSuccess)
+    # requestWithLoading(task, onSuccess)
+    + showMessage(text)
+    # confirm(title, message, action)
+  }
+  abstract class "BaseListActivity<T>" as BaseList {
+    # adapter : GenericAdapter<T>
+    # {abstract} getItemLayout() : int
+    # {abstract} bindItem(view, item, pos)
+    # {abstract} loadItems()
+    # showItems(list)
+    # showError(message)
+    # showFab(text, onClick)
+  }
+  abstract class BaseFragment {
+    # repo() : Repositories
+    # request(task, onSuccess, onError)
+  }
+  BaseActivity <|-- BaseList
+}
+
+package "ui.common  (reusable components)" {
+  class "GenericAdapter<T>" as GA {
+    + setItems(list)
+    + setOnItemClick(listener)
+  }
+  class StateView {
+    + showLoading()
+    + showEmpty(icon, title, msg)
+    + showError(msg, retry)
+  }
+  class QuantityView {
+    + setRange(min, max)
+    + getQuantity() : int
+  }
+  class PriceSummaryView {
+    + setPrices(sub, disc, del, total)
+  }
+  class OrderStatusView {
+    + setStatus(status)
+  }
+  class MenuRowView
+  class Form {
+    + {static} text(field) : String
+    + {static} check(field, error) : boolean
+  }
+}
+
+package "data" {
+  class Async {
+    + {static} run(task, onSuccess, onError)
+  }
+  class AppException
+  class SessionManager {
+    + saveLogin(user)
+    + getUserId() : long
+    + logout()
+  }
+  class AppDatabase <<SQLiteOpenHelper>> {
+    + onCreate(db)
+    - runSqlFile(path)
+  }
+  class Db {
+    + {static} list(db, sql, mapper, args)
+    + {static} one(db, sql, mapper, args)
+  }
+  class Repositories {
+    + users : UserRepository
+    + orders : OrderRepository
+    + catalog : CatalogRepository
+    + addresses, designs, content,
+      notifications, support
+  }
+  class OrderRepository {
+    + getOrders(userId)
+    + placeOrder(userId, order)
+    + reschedule(userId, id, date)
+    + cancel(userId, id)
+    + updateStatus(id, status)
+  }
+  class UserRepository {
+    + register(data) : User
+    + login(id, password) : User
+    + changePassword(...)
+  }
+  Repositories *-- OrderRepository
+  Repositories *-- UserRepository
+  OrderRepository ..> AppDatabase
+  UserRepository ..> AppDatabase
+  OrderRepository ..> Db
+  OrderRepository ..> AppException : throws
+  Async ..> AppException : catches
+}
+
+package "util" {
+  class Validator {
+    + {static} email(s) : String
+    + {static} phone(s) : String
+    + {static} password(s) : String
+    + {static} quantity(q, min, max) : String
+  }
+  class PriceCalculator {
+    + {static} unitPrice(...)
+    + {static} subtotal(...)
+    + {static} discount(...)
+    + {static} total(...)
+  }
+  class PasswordHasher {
+    + {static} hash(password)
+    + {static} matches(password, stored)
+  }
+  class NotificationHelper
+  class NotificationSync
+}
+
+package "screens" {
+  class LoginActivity
+  class RegisterActivity
+  class MainActivity
+  class ProductDetailActivity
+  class OrderDetailActivity
+  class AddressesActivity
+  class DesignsActivity
+  class NotificationsActivity
+  class GalleryActivity
+  class InfoListActivity
+  class StaffActivity
+  class HomeFragment
+  class BrowseFragment
+  class OrdersFragment
+  class ProfileFragment
+}
+
+BaseActivity <|-- LoginActivity
+BaseActivity <|-- RegisterActivity
+BaseActivity <|-- MainActivity
+BaseActivity <|-- ProductDetailActivity
+BaseActivity <|-- OrderDetailActivity
+BaseList <|-- AddressesActivity
+BaseList <|-- DesignsActivity
+BaseList <|-- NotificationsActivity
+BaseList <|-- GalleryActivity
+BaseList <|-- InfoListActivity
+BaseList <|-- StaffActivity
+BaseFragment <|-- HomeFragment
+BaseFragment <|-- BrowseFragment
+BaseFragment <|-- OrdersFragment
+BaseFragment <|-- ProfileFragment
+MainActivity o-- HomeFragment
+MainActivity o-- BrowseFragment
+MainActivity o-- OrdersFragment
+MainActivity o-- ProfileFragment
+
+BaseActivity ..> Async : uses
+BaseActivity o-- Repositories
+UserRepository ..> PasswordHasher
+BaseList *-- GA
+BaseList *-- StateView
+ProductDetailActivity *-- QuantityView
+ProductDetailActivity *-- PriceSummaryView
+OrderDetailActivity *-- OrderStatusView
+OrderDetailActivity *-- PriceSummaryView
+ProductDetailActivity ..> PriceCalculator
+ProductDetailActivity ..> Validator
+RegisterActivity ..> Validator
+@enduml

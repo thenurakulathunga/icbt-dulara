@@ -1,0 +1,147 @@
+@startuml class-domain
+!include style.iuml
+title PrintXpress - Class Diagram (domain model)
+hide empty methods
+
+class User {
+  - userId : long
+  - fullName : String
+  - email : String
+  - phone : String
+  - createdAt : LocalDateTime
+  + getFirstName() : String
+}
+
+class Address {
+  - addressId : long
+  - label : String
+  - addressLine : String
+  - city : String
+  - postalCode : String
+  - isDefault : boolean
+  + getFullAddress() : String
+}
+
+class Category {
+  - categoryId : long
+  - name : String
+  - description : String
+  - iconName : String
+}
+
+class Product {
+  - productId : long
+  - name : String
+  - description : String
+  - basePrice : double
+  - minQuantity : int
+  - maxQuantity : int
+  - turnaroundDays : int
+}
+
+class ProductOption {
+  - optionId : long
+  - optionType : SIZE | MATERIAL
+  - optionName : String
+  - extraPrice : double
+}
+
+class Design {
+  - designId : long
+  - title : String
+  - originalName : String
+  - fileName : String
+  - uploadedAt : LocalDateTime
+  + isPdf() : boolean
+}
+
+class Order {
+  - orderId : long
+  - fulfilmentType : PICKUP | DELIVERY
+  - scheduledDate : LocalDate
+  - status : OrderStatus
+  - subtotal : double
+  - discountAmount : double
+  - deliveryFee : double
+  - notes : String
+  + getTotalAmount() : double
+  + canChange() : boolean
+}
+
+class OrderItem {
+  - quantity : int
+  - unitPrice : double
+  - customText : String
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  PRINTING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+class Promotion {
+  - promotionId : long
+  - title : String
+  - promoCode : String
+  - discountPercent : int
+  - minQuantity : int
+  - startDate : LocalDate
+  - endDate : LocalDate
+}
+
+class Notification {
+  - notificationId : long
+  - title : String
+  - message : String
+  - type : ORDER | PROMOTION | SYSTEM
+  - isRead : boolean
+}
+
+class SupportRequest {
+  - requestId : long
+  - subject : String
+  - message : String
+  - status : OPEN | ANSWERED | CLOSED
+  - reply : String
+}
+
+class SampleDesign {
+  - sampleId : long
+  - title : String
+  - description : String
+  - styleColor : String
+}
+
+interface InfoItem {
+  + getHeading() : String
+  + getBody() : String
+}
+class Guideline
+class Faq
+InfoItem <|.. Guideline
+InfoItem <|.. Faq
+
+User "1" *-- "0..*" Address : owns >
+User "1" *-- "0..*" Design : uploads >
+User "1" -- "0..*" Order : places >
+User "1" *-- "0..*" Notification : receives >
+User "1" *-- "0..*" SupportRequest : asks >
+
+Category "1" o-- "1..*" Product : contains >
+Category "1" o-- "0..*" SampleDesign : shows >
+Product "1" *-- "1..*" ProductOption : offers >
+
+Order "1" *-- "1..*" OrderItem : contains >
+Order "0..*" --> "0..1" Address : delivered to >
+Order "0..*" --> "0..1" Promotion : uses >
+Order --> OrderStatus
+
+OrderItem "0..*" --> "1" Product
+OrderItem "0..*" --> "1" ProductOption : size >
+OrderItem "0..*" --> "0..1" ProductOption : material >
+OrderItem "0..*" --> "0..1" Design : artwork >
+@enduml

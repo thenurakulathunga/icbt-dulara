@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PrintXpress logo: white printer on an orange rounded square -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_thumb" />
+    <item android:drawable="@drawable/ic_logo_printer" android:top="18dp" android:bottom="18dp" android:left="18dp" android:right="18dp" />
+</layer-list>

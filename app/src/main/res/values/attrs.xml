@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Custom XML attributes for our reusable views -->
+<resources>
+    <!-- <com.example.printexpress.ui.common.MenuRowView app:rowIcon="..." app:rowTitle="..." /> -->
+    <declare-styleable name="MenuRowView">
+        <attr name="rowIcon" format="reference" />
+        <attr name="rowTitle" format="string" />
+        <attr name="rowSubtitle" format="string" />
+        <attr name="rowDanger" format="boolean" />
+    </declare-styleable>
+</resources>
